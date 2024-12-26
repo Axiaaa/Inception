@@ -15,8 +15,11 @@ RUN apt-get update && \
 COPY my.cnf /etc/mysql/my.cnf
 
 # Copy the script, set the permissions
-COPY setup.sh /setup.sh
-RUN chmod +x /setup.sh
+COPY setup.sh /usr/bin/setup.sh
+
+RUN chmod +x /usr/bin/setup.sh
+
+RUN echo "Starting MariaDB"
 
 # Run the script
-CMD ["/setup.sh"]
+CMD ["/usr/bin/setup.sh"]

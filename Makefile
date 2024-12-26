@@ -18,9 +18,14 @@ down :
 logs :
 	docker-compose logs -f
 
-clean :
-	docker-compose down
-	docker-compose rm -f
-	docker rmi -f $(shell docker images -q)
+destroy:
+	docker-compose down --rmi all -v
+	sudo rm -rf /home/lcamerly/data/*
 
-.PHONY: all build up down logs clean
+clean : destroy
+	docker system prune -af
+	docker volume rm `sudo docker volume ls -q`
+
+re : destroy all
+
+.PHONY: all build up down logs clean destroy re start stop
