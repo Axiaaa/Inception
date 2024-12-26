@@ -1,0 +1,65 @@
+services:
+
+  mariadb:
+    container_name: mariadb
+    env_file: .env
+    restart: always
+    build: 
+      context: srcs/MariaDB
+      dockerfile: Dockerfile
+    networks: 
+      - inception
+    volumes: 
+      - mariadb:/home/lcamerly/mariaDB
+    ports : 
+      - "3306:3306"
+
+  nginx:
+    container_name: nginx
+    env_file: .env
+    restart: always
+    build: 
+      context: srcs/NGinx
+      dockerfile: Dockerfile
+    networks: 
+      - inception
+    volumes: 
+      - nginx:/home/lcamerly/data
+    depends_on: 
+      - wordpress
+    ports : 
+      - "443:443"
+      
+  wordpress:
+    container_name: wordpress
+    env_file: .env
+    restart: always
+    build: 
+      context: srcs/Wordpress
+      dockerfile: Dockerfile
+    networks: 
+      - inception
+    volumes: 
+      - nginx:/home/lcamerly/data
+    depends_on:
+      - mariadb
+    ports: 
+      - "9000:9000"
+
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/lcamerly/mariadb'
+  nginx:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/lcamerly/nginx'
+
+networks:
+  inception:
+    driver: bridge
