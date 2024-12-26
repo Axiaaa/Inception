@@ -17,4 +17,3 @@ RUN echo "Starting NGinx"
 
 CMD ["nginx", "-g", "daemon off;"]
 
-EXPOE $NG_PORT

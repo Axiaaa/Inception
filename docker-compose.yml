@@ -35,7 +35,7 @@ services:
     env_file: .env
     restart: always
     build: 
-      context: srcs/Wordpress
+      context: srcs/WordPress
       dockerfile: Dockerfile
     networks: 
       - inception

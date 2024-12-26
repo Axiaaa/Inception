@@ -5,8 +5,8 @@ start : up
 stop : down
 
 build :
-	mkdir -p /home/nephtys/data/mariadb
-	mkdir -p /home/nephtys/data/nginx
+	mkdir -p /home/lcamerly/data/mariadb
+	mkdir -p /home/lcamerly/data/nginx
 	docker-compose build 
 
 up :
