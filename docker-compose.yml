@@ -10,7 +10,7 @@ services:
     networks: 
       - inception
     volumes: 
-      - mariadb:/home/lcamerly/mariaDB
+      - mariadb:/home/lcamerly/mariadb
     ports : 
       - "3306:3306"
 
@@ -24,7 +24,7 @@ services:
     networks: 
       - inception
     volumes: 
-      - nginx:/home/lcamerly/data
+      - nginx:/home/lcamerly/nginx
     depends_on: 
       - wordpress
     ports : 
@@ -52,13 +52,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: '/home/lcamerly/mariadb'
+      device: /home/lcamerly/mariadb
   nginx:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: '/home/lcamerly/nginx'
+      device: /home/lcamerly/nginx
 
 networks:
   inception:

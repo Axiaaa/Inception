@@ -1,5 +1,12 @@
 FROM debian:bullseye
 
+ARG DB_HOST
+ARG DB_NAME
+ARG WP_TITLE
+ARG WP_ADMIN_USERNAME
+ARG WP_ADMIN_PASSWORD
+ARG WP_ADMIN_EMAIL
+
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install less curl unzip php php-mysql php-fpm mariadb-client -y && \
