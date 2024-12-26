@@ -1,6 +1,7 @@
 FROM debian:bullseye
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y nginx openssl gettext && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
