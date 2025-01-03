@@ -16,7 +16,7 @@ if [[ ! -d /home/lcamerly/data/wp-admin  ]]; then
     chown -R www-data:www-data /home/lcamerly/data/
 
     echo -e $BLUE"Waiting for db"$NC
-    sleep 10
+    sleep 20
 
     echo -e $BLUE"Installing wordpress"$NC
     ./wp-cli.phar --allow-root --path=/home/lcamerly/data config create \
