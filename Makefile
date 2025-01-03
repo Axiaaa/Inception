@@ -24,7 +24,6 @@ destroy:
 
 clean : destroy
 	docker system prune -af
-	docker volume rm `sudo docker volume ls -q`
 
 re : destroy all
 
